@@ -1,0 +1,872 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>5.3 Touch effect全局入口</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/5_3_touch_effect____/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-3.2.1.min.js"></script>
+    <script src="resources/scripts/axure/axQuery.js"></script>
+    <script src="resources/scripts/axure/globals.js"></script>
+    <script src="resources/scripts/axutils.js"></script>
+    <script src="resources/scripts/axure/annotation.js"></script>
+    <script src="resources/scripts/axure/axQuery.std.js"></script>
+    <script src="resources/scripts/axure/doc.js"></script>
+    <script src="resources/scripts/messagecenter.js"></script>
+    <script src="resources/scripts/axure/events.js"></script>
+    <script src="resources/scripts/axure/recording.js"></script>
+    <script src="resources/scripts/axure/action.js"></script>
+    <script src="resources/scripts/axure/expr.js"></script>
+    <script src="resources/scripts/axure/geometry.js"></script>
+    <script src="resources/scripts/axure/flyout.js"></script>
+    <script src="resources/scripts/axure/model.js"></script>
+    <script src="resources/scripts/axure/repeater.js"></script>
+    <script src="resources/scripts/axure/sto.js"></script>
+    <script src="resources/scripts/axure/utils.temp.js"></script>
+    <script src="resources/scripts/axure/variables.js"></script>
+    <script src="resources/scripts/axure/drag.js"></script>
+    <script src="resources/scripts/axure/move.js"></script>
+    <script src="resources/scripts/axure/visibility.js"></script>
+    <script src="resources/scripts/axure/style.js"></script>
+    <script src="resources/scripts/axure/adaptive.js"></script>
+    <script src="resources/scripts/axure/tree.js"></script>
+    <script src="resources/scripts/axure/init.temp.js"></script>
+    <script src="resources/scripts/axure/legacy.js"></script>
+    <script src="resources/scripts/axure/viewer.js"></script>
+    <script src="resources/scripts/axure/math.js"></script>
+    <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
+    <script src="data/document.js"></script>
+    <script src="files/5_3_touch_effect____/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- 页头 (Dynamic Panel) -->
+      <div id="u1069" class="ax_default" data-label="页头">
+        <div id="u1069_state0" class="panel_state" data-label="State1" style="">
+          <div id="u1069_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u1070" class="ax_default shape">
+              <img id="u1070_img" class="img " src="images/目录/u1.svg"/>
+              <div id="u1070_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u1071" class="ax_default">
+              <div id="u1071_div" class=""></div>
+              <div id="u1071_text" class="text ">
+                <p><span style="text-decoration:none;">Touch effect全局入口</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Group) -->
+      <div id="u1072" class="ax_default" data-left="52" data-top="130" data-width="910" data-height="444">
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u1073" class="ax_default _二级标题">
+          <div id="u1073_div" class=""></div>
+          <div id="u1073_text" class="text ">
+            <p><span style="text-decoration:none;">逻辑流程</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u1074" class="ax_default label">
+          <div id="u1074_div" class=""></div>
+          <div id="u1074_text" class="text ">
+            <p><span style="text-decoration:none;">兼容旧版本</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u1075" class="ax_default flow_shape">
+          <div id="u1075_div" class=""></div>
+          <div id="u1075_text" class="text ">
+            <p><span style="text-decoration:none;">打开应用</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Diamond) -->
+        <div id="u1076" class="ax_default flow_shape">
+          <img id="u1076_img" class="img " src="images/2_1touch_effect/u245.svg"/>
+          <div id="u1076_text" class="text ">
+            <p><span style="text-decoration:none;">是否设置过touch</span></p><p><span style="text-decoration:none;">&nbsp;effect特效</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u1077" class="ax_default flow_shape">
+          <div id="u1077_div" class=""></div>
+          <div id="u1077_text" class="text ">
+            <p><span style="text-decoration:none;">保留上次所设置的touch effect 特效</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Connector) -->
+        <div id="u1078" class="ax_default connector">
+          <img id="u1078_seg0" class="img " src="images/5_3_touch_effect____/u1078_seg0.svg" alt="u1078_seg0"/>
+          <img id="u1078_seg1" class="img " src="images/5_3_touch_effect____/u1078_seg1.svg" alt="u1078_seg1"/>
+          <div id="u1078_text" class="text ">
+            <p><span style="text-decoration:none;">是</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Connector) -->
+        <div id="u1079" class="ax_default connector">
+          <img id="u1079_seg0" class="img " src="images/5_3_touch_effect____/u1079_seg0.svg" alt="u1079_seg0"/>
+          <img id="u1079_seg1" class="img " src="images/5_3_touch_effect____/u1079_seg1.svg" alt="u1079_seg1"/>
+          <img id="u1079_seg2" class="img " src="images/5_3_touch_effect____/u1079_seg2.svg" alt="u1079_seg2"/>
+          <div id="u1079_text" class="text ">
+            <p><span style="text-decoration:none;">否</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Diamond) -->
+        <div id="u1080" class="ax_default flow_shape">
+          <img id="u1080_img" class="img " src="images/2_1touch_effect/u245.svg"/>
+          <div id="u1080_text" class="text ">
+            <p><span style="text-decoration:none;">是否已set过壁纸</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Connector) -->
+        <div id="u1081" class="ax_default connector">
+          <img id="u1081_seg0" class="img " src="images/5_3_touch_effect____/u1081_seg0.svg" alt="u1081_seg0"/>
+          <img id="u1081_seg1" class="img " src="images/5_3_touch_effect____/u1081_seg1.svg" alt="u1081_seg1"/>
+          <div id="u1081_text" class="text ">
+            <p><span style="text-decoration:none;">是</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Connector) -->
+        <div id="u1082" class="ax_default connector">
+          <img id="u1082_seg0" class="img " src="images/5_3_touch_effect____/u1082_seg0.svg" alt="u1082_seg0"/>
+          <img id="u1082_seg1" class="img " src="images/5_3_touch_effect____/u1082_seg1.svg" alt="u1082_seg1"/>
+          <img id="u1082_seg2" class="img " src="images/5_3_touch_effect____/u1082_seg2.svg" alt="u1082_seg2"/>
+          <div id="u1082_text" class="text ">
+            <p><span style="text-decoration:none;">否</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Connector) -->
+        <div id="u1083" class="ax_default connector">
+          <img id="u1083_seg0" class="img " src="images/5_1_touch_effect____/u972_seg0.svg" alt="u1083_seg0"/>
+          <img id="u1083_seg1" class="img " src="images/5_1_touch_effect____/u972_seg1.svg" alt="u1083_seg1"/>
+          <div id="u1083_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u1084" class="ax_default flow_shape">
+          <div id="u1084_div" class=""></div>
+          <div id="u1084_text" class="text ">
+            <p><span style="text-decoration:none;">有全局入口</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u1085" class="ax_default flow_shape">
+          <div id="u1085_div" class=""></div>
+          <div id="u1085_text" class="text ">
+            <p><span style="text-decoration:none;">无全局入口</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1086" class="ax_default _二级标题">
+        <div id="u1086_div" class=""></div>
+        <div id="u1086_text" class="text ">
+          <p><span style="text-decoration:none;">逻辑流程</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1087" class="ax_default label">
+        <div id="u1087_div" class=""></div>
+        <div id="u1087_text" class="text ">
+          <p><span style="text-decoration:none;">兼容旧版本</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1088" class="ax_default flow_shape">
+        <div id="u1088_div" class=""></div>
+        <div id="u1088_text" class="text ">
+          <p><span style="text-decoration:none;">打开应用</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Diamond) -->
+      <div id="u1089" class="ax_default flow_shape">
+        <img id="u1089_img" class="img " src="images/2_1touch_effect/u245.svg"/>
+        <div id="u1089_text" class="text ">
+          <p><span style="text-decoration:none;">是否设置过touch</span></p><p><span style="text-decoration:none;">&nbsp;effect特效</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1090" class="ax_default flow_shape">
+        <div id="u1090_div" class=""></div>
+        <div id="u1090_text" class="text ">
+          <p><span style="text-decoration:none;">保留上次所设置的touch effect 特效</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Connector) -->
+      <div id="u1091" class="ax_default connector">
+        <img id="u1091_seg0" class="img " src="images/5_3_touch_effect____/u1091_seg0.svg" alt="u1091_seg0"/>
+        <img id="u1091_seg1" class="img " src="images/5_3_touch_effect____/u1091_seg1.svg" alt="u1091_seg1"/>
+        <div id="u1091_text" class="text ">
+          <p><span style="text-decoration:none;">是</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Connector) -->
+      <div id="u1092" class="ax_default connector">
+        <img id="u1092_seg0" class="img " src="images/5_3_touch_effect____/u1092_seg0.svg" alt="u1092_seg0"/>
+        <img id="u1092_seg1" class="img " src="images/5_3_touch_effect____/u1092_seg1.svg" alt="u1092_seg1"/>
+        <img id="u1092_seg2" class="img " src="images/5_3_touch_effect____/u1092_seg2.svg" alt="u1092_seg2"/>
+        <div id="u1092_text" class="text ">
+          <p><span style="text-decoration:none;">否</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Diamond) -->
+      <div id="u1093" class="ax_default flow_shape">
+        <img id="u1093_img" class="img " src="images/2_1touch_effect/u245.svg"/>
+        <div id="u1093_text" class="text ">
+          <p><span style="text-decoration:none;">是否已set过壁纸</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Connector) -->
+      <div id="u1094" class="ax_default connector">
+        <img id="u1094_seg0" class="img " src="images/5_3_touch_effect____/u1094_seg0.svg" alt="u1094_seg0"/>
+        <img id="u1094_seg1" class="img " src="images/5_3_touch_effect____/u1094_seg1.svg" alt="u1094_seg1"/>
+        <div id="u1094_text" class="text ">
+          <p><span style="text-decoration:none;">是</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Connector) -->
+      <div id="u1095" class="ax_default connector">
+        <img id="u1095_seg0" class="img " src="images/5_3_touch_effect____/u1095_seg0.svg" alt="u1095_seg0"/>
+        <img id="u1095_seg1" class="img " src="images/5_3_touch_effect____/u1095_seg1.svg" alt="u1095_seg1"/>
+        <img id="u1095_seg2" class="img " src="images/5_3_touch_effect____/u1095_seg2.svg" alt="u1095_seg2"/>
+        <div id="u1095_text" class="text ">
+          <p><span style="text-decoration:none;">否</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Connector) -->
+      <div id="u1096" class="ax_default connector">
+        <img id="u1096_seg0" class="img " src="images/5_3_touch_effect____/u1096_seg0.svg" alt="u1096_seg0"/>
+        <img id="u1096_seg1" class="img " src="images/5_3_touch_effect____/u1096_seg1.svg" alt="u1096_seg1"/>
+        <div id="u1096_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1097" class="ax_default flow_shape">
+        <div id="u1097_div" class=""></div>
+        <div id="u1097_text" class="text ">
+          <p><span style="text-decoration:none;">&nbsp;自动出现Touch effect介绍提示</span></p>
+        </div>
+      </div>
+
+      <!-- BG (Rectangle) -->
+      <div id="u1098" class="ax_default _形状" data-label="BG">
+        <div id="u1098_div" class=""></div>
+        <div id="u1098_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Rectangle (Rectangle) -->
+      <div id="u1099" class="ax_default _形状" data-label="Rectangle">
+        <div id="u1099_div" class=""></div>
+        <div id="u1099_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Rectangle 2 (Rectangle) -->
+      <div id="u1100" class="ax_default _形状" data-label="Rectangle 2">
+        <div id="u1100_div" class=""></div>
+        <div id="u1100_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Rectangle 2 Copy (Rectangle) -->
+      <div id="u1101" class="ax_default _形状" data-label="Rectangle 2 Copy">
+        <div id="u1101_div" class=""></div>
+        <div id="u1101_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Rectangle 2 Copy 2 (Rectangle) -->
+      <div id="u1102" class="ax_default _形状" data-label="Rectangle 2 Copy 2">
+        <div id="u1102_div" class=""></div>
+        <div id="u1102_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Any (Rectangle) -->
+      <div id="u1103" class="ax_default _形状" data-label="Any">
+        <div id="u1103_div" class=""></div>
+        <div id="u1103_text" class="text ">
+          <p><span style="text-decoration:none;">Any</span></p>
+        </div>
+      </div>
+
+      <!-- download (Group) -->
+      <div id="u1104" class="ax_default" data-label="download" data-left="382" data-top="1272" data-width="21" data-height="21">
+
+        <!-- Rectangle-path (Rectangle) -->
+        <div id="u1105" class="ax_default _形状" data-label="Rectangle-path">
+          <div id="u1105_div" class=""></div>
+          <div id="u1105_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Shape (Shape) -->
+        <div id="u1106" class="ax_default _形状" data-label="Shape">
+          <img id="u1106_img" class="img " src="images/5__touch_effect___/shape_u764.svg"/>
+          <div id="u1106_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEATRUED (Rectangle) -->
+      <div id="u1107" class="ax_default _形状" data-label="FEATRUED">
+        <div id="u1107_div" class=""></div>
+        <div id="u1107_text" class="text ">
+          <p><span style="text-decoration:none;">FEATRUED</span></p>
+        </div>
+      </div>
+
+      <!-- Rectangle 3 (Rectangle) -->
+      <div id="u1108" class="ax_default _形状" data-label="Rectangle 3">
+        <div id="u1108_div" class=""></div>
+        <div id="u1108_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Group (Group) -->
+      <div id="u1109" class="ax_default" data-label="Group" data-left="58" data-top="1356" data-width="351" data-height="323">
+
+        <!-- Rectangle 4 Copy 2 (Rectangle) -->
+        <div id="u1110" class="ax_default _形状" data-label="Rectangle 4 Copy 2">
+          <div id="u1110_div" class=""></div>
+          <div id="u1110_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Rectangle 4 Copy 5 (Rectangle) -->
+        <div id="u1111" class="ax_default _形状" data-label="Rectangle 4 Copy 5">
+          <div id="u1111_div" class=""></div>
+          <div id="u1111_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Rectangle 4 Copy 3 (Rectangle) -->
+        <div id="u1112" class="ax_default _形状" data-label="Rectangle 4 Copy 3">
+          <div id="u1112_div" class=""></div>
+          <div id="u1112_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Rectangle 4 Copy 6 (Rectangle) -->
+        <div id="u1113" class="ax_default _形状" data-label="Rectangle 4 Copy 6">
+          <div id="u1113_div" class=""></div>
+          <div id="u1113_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Rectangle 4 Copy 4 (Rectangle) -->
+        <div id="u1114" class="ax_default _形状" data-label="Rectangle 4 Copy 4">
+          <div id="u1114_div" class=""></div>
+          <div id="u1114_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Rectangle 4 Copy 7 (Rectangle) -->
+        <div id="u1115" class="ax_default _形状" data-label="Rectangle 4 Copy 7">
+          <div id="u1115_div" class=""></div>
+          <div id="u1115_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rectangle 4 Copy 2 (Rectangle) -->
+      <div id="u1116" class="ax_default _形状" data-label="Rectangle 4 Copy 2">
+        <div id="u1116_div" class=""></div>
+        <div id="u1116_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Rectangle 4 Copy 5 (Rectangle) -->
+      <div id="u1117" class="ax_default _形状" data-label="Rectangle 4 Copy 5">
+        <div id="u1117_div" class=""></div>
+        <div id="u1117_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Rectangle 4 Copy 3 (Rectangle) -->
+      <div id="u1118" class="ax_default _形状" data-label="Rectangle 4 Copy 3">
+        <div id="u1118_div" class=""></div>
+        <div id="u1118_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Rectangle 4 Copy 6 (Rectangle) -->
+      <div id="u1119" class="ax_default _形状" data-label="Rectangle 4 Copy 6">
+        <div id="u1119_div" class=""></div>
+        <div id="u1119_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Rectangle 4 Copy 4 (Rectangle) -->
+      <div id="u1120" class="ax_default _形状" data-label="Rectangle 4 Copy 4">
+        <div id="u1120_div" class=""></div>
+        <div id="u1120_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Rectangle 4 Copy 7 (Rectangle) -->
+      <div id="u1121" class="ax_default _形状" data-label="Rectangle 4 Copy 7">
+        <div id="u1121_div" class=""></div>
+        <div id="u1121_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- CATEGORIES (Rectangle) -->
+      <div id="u1122" class="ax_default _形状" data-label="CATEGORIES">
+        <div id="u1122_div" class=""></div>
+        <div id="u1122_text" class="text ">
+          <p><span style="text-decoration:none;">CATEGORIES</span></p>
+        </div>
+      </div>
+
+      <!-- Oval (Shape) -->
+      <div id="u1123" class="ax_default _形状" data-label="Oval">
+        <img id="u1123_img" class="img " src="images/5__touch_effect___/oval_u824.svg"/>
+        <div id="u1123_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1124" class="ax_default box_3">
+        <div id="u1124_div" class=""></div>
+        <div id="u1124_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Rectangle 2 (Rectangle) -->
+      <div id="u1125" class="ax_default _形状" data-label="Rectangle 2">
+        <div id="u1125_div" class=""></div>
+        <div id="u1125_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Rectangle 2 Copy (Rectangle) -->
+      <div id="u1126" class="ax_default _形状" data-label="Rectangle 2 Copy">
+        <div id="u1126_div" class=""></div>
+        <div id="u1126_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Rectangle 2 Copy 2 (Rectangle) -->
+      <div id="u1127" class="ax_default _形状" data-label="Rectangle 2 Copy 2">
+        <div id="u1127_div" class=""></div>
+        <div id="u1127_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Any (Rectangle) -->
+      <div id="u1128" class="ax_default _形状" data-label="Any">
+        <div id="u1128_div" class=""></div>
+        <div id="u1128_text" class="text ">
+          <p><span style="text-decoration:none;">Any</span></p>
+        </div>
+      </div>
+
+      <!-- FEATRUED (Rectangle) -->
+      <div id="u1129" class="ax_default _形状" data-label="FEATRUED">
+        <div id="u1129_div" class=""></div>
+        <div id="u1129_text" class="text ">
+          <p><span style="text-decoration:none;">FEATRUED</span></p>
+        </div>
+      </div>
+
+      <!-- Rectangle 3 (Rectangle) -->
+      <div id="u1130" class="ax_default _形状" data-label="Rectangle 3">
+        <div id="u1130_div" class=""></div>
+        <div id="u1130_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Rectangle 4 (Rectangle) -->
+      <div id="u1131" class="ax_default _形状" data-label="Rectangle 4">
+        <div id="u1131_div" class=""></div>
+        <div id="u1131_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Any Copy (Rectangle) -->
+      <div id="u1132" class="ax_default _形状" data-label="Any Copy">
+        <div id="u1132_div" class=""></div>
+        <div id="u1132_text" class="text ">
+          <p><span style="text-decoration:none;">Any</span></p>
+        </div>
+      </div>
+
+      <!-- Line Copy (Shape) -->
+      <div id="u1133" class="ax_default _形状" data-label="Line Copy">
+        <img id="u1133_img" class="img " src="images/5__touch_effect___/line_copy_u834.svg"/>
+        <div id="u1133_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Line Copy 2 (Shape) -->
+      <div id="u1134" class="ax_default _形状" data-label="Line Copy 2">
+        <img id="u1134_img" class="img " src="images/5__touch_effect___/line_copy_u834.svg"/>
+        <div id="u1134_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Feed back (Rectangle) -->
+      <div id="u1135" class="ax_default _形状" data-label="Feed back">
+        <div id="u1135_div" class=""></div>
+        <div id="u1135_text" class="text ">
+          <p><span style="text-decoration:none;">Feed back</span></p>
+        </div>
+      </div>
+
+      <!-- about (Rectangle) -->
+      <div id="u1136" class="ax_default _形状" data-label="about">
+        <div id="u1136_div" class=""></div>
+        <div id="u1136_text" class="text ">
+          <p><span style="text-decoration:none;">about</span></p>
+        </div>
+      </div>
+
+      <!-- Rectangle 5 (Rectangle) -->
+      <div id="u1137" class="ax_default _形状" data-label="Rectangle 5">
+        <div id="u1137_div" class=""></div>
+        <div id="u1137_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Rectangle 5 Copy (Rectangle) -->
+      <div id="u1138" class="ax_default _形状" data-label="Rectangle 5 Copy">
+        <div id="u1138_div" class=""></div>
+        <div id="u1138_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1139" class="ax_default box_3">
+        <div id="u1139_div" class=""></div>
+        <div id="u1139_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1140" class="ax_default box_1">
+        <img id="u1140_img" class="img " src="images/5_1_touch_effect____/u940.svg"/>
+        <div id="u1140_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Touch effect (Rectangle) -->
+      <div id="u1141" class="ax_default _形状" data-label="Touch effect">
+        <div id="u1141_div" class=""></div>
+        <div id="u1141_text" class="text ">
+          <p><span style="text-decoration:none;">Touch effect</span></p>
+        </div>
+      </div>
+
+      <!-- Rectangle 5 Copy 2 (Rectangle) -->
+      <div id="u1142" class="ax_default _形状" data-label="Rectangle 5 Copy 2">
+        <div id="u1142_div" class=""></div>
+        <div id="u1142_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1143" class="ax_default box_1">
+        <img id="u1143_img" class="img " src="images/5_1_touch_effect____/u943.svg"/>
+        <div id="u1143_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1144" class="ax_default _文本段落">
+        <div id="u1144_div" class=""></div>
+        <div id="u1144_text" class="text ">
+          <p><span style="text-decoration:none;">Set your touch effect to make your desktop magical，First use it should set a Wallpaper</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Ellipse) -->
+      <div id="u1145" class="ax_default ellipse">
+        <img id="u1145_img" class="img " src="images/5_1_touch_effect____/u945.svg"/>
+        <div id="u1145_text" class="text ">
+          <p><span style="font-family:'PingFangSC-Regular', 'PingFang SC';text-decoration:none;">桌面</span><span style="font-family:'ArialMT', 'Arial';text-decoration:none;">gif</span><span style="font-family:'PingFangSC-Regular', 'PingFang SC';text-decoration:none;">图</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Shape) -->
+      <div id="u1146" class="ax_default box_1">
+        <img id="u1146_img" class="img " src="images/5_1_touch_effect____/u946.svg"/>
+        <div id="u1146_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1147" class="ax_default box_3">
+        <div id="u1147_div" class=""></div>
+        <div id="u1147_text" class="text ">
+          <p><span style="text-decoration:none;">OK</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1148" class="ax_default _三级标题">
+        <div id="u1148_div" class=""></div>
+        <div id="u1148_text" class="text ">
+          <p><span style="text-decoration:none;">Touch effect介绍提示&amp;set壁纸提示</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Horizontal Line) -->
+      <div id="u1149" class="compound ax_default horizontal_line" data-height="2" data-width="240" CompoundMode="true">
+        <img id="u1149_img" class="singleImg img " src="images/5_3_touch_effect____/u1149.svg"/>
+        <div id="u1149p000" class="ax_vector_shape" WidgetTopLeftX="-0.48780487804878" WidgetTopLeftY="-0.25" WidgetTopRightX="0.48780487804878" WidgetTopRightY="-0.25" WidgetBottomLeftX="-0.48780487804878" WidgetBottomLeftY="0.25" WidgetBottomRightX="0.48780487804878" WidgetBottomRightY="0.25">
+          <img id="u1149p000_img" class="img " src="images/5_3_touch_effect____/u1149p000.png"/>
+        </div>
+        <div id="u1149p001" class="ax_vector_shape" WidgetTopLeftX="-0.25" WidgetTopLeftY="-0.25" WidgetTopRightX="59.75" WidgetTopRightY="-0.25" WidgetBottomLeftX="-0.25" WidgetBottomLeftY="0.25" WidgetBottomRightX="59.75" WidgetBottomRightY="0.25">
+          <img id="u1149p001_img" class="img " src="images/3__手机壳广告/u141p001.png"/>
+        </div>
+        <div id="u1149p002" class="ax_vector_shape" WidgetTopLeftX="9.79166666666667" WidgetTopLeftY="0.0416666666666667" WidgetTopRightX="-0.208333333333333" WidgetTopRightY="0.0416666666666667" WidgetBottomLeftX="9.79166666666667" WidgetBottomLeftY="-0.0416666666666667" WidgetBottomRightX="-0.208333333333333" WidgetBottomRightY="-0.0416666666666667">
+          <img id="u1149p002_img" class="img " src="images/4__颜色选择图片/u416p002.png"/>
+        </div>
+        <div id="u1149_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1150" class="ax_default shape">
+        <div id="u1150_div" class=""></div>
+        <div id="u1150_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1151" class="ax_default shape">
+        <div id="u1151_div" class=""></div>
+        <div id="u1151_text" class="text ">
+          <p><span style="text-decoration:none;">返回featrue首页</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1152" class="ax_default flow_shape">
+        <div id="u1152_div" class=""></div>
+        <div id="u1152_text" class="text ">
+          <p><span style="text-decoration:none;">无自动的引导提示</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Diamond) -->
+      <div id="u1153" class="ax_default flow_shape">
+        <img id="u1153_img" class="img " src="images/2_1touch_effect/u245.svg"/>
+        <div id="u1153_text" class="text ">
+          <p><span style="text-decoration:none;">后续是否set壁纸</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Connector) -->
+      <div id="u1154" class="ax_default connector">
+        <img id="u1154_seg0" class="img " src="images/5_3_touch_effect____/u1154_seg0.svg" alt="u1154_seg0"/>
+        <img id="u1154_seg1" class="img " src="images/5_3_touch_effect____/u1154_seg1.svg" alt="u1154_seg1"/>
+        <div id="u1154_text" class="text ">
+          <p><span style="text-decoration:none;">否</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Diamond) -->
+      <div id="u1155" class="ax_default flow_shape">
+        <img id="u1155_img" class="img " src="images/2_1touch_effect/u245.svg"/>
+        <div id="u1155_text" class="text ">
+          <p><span style="text-decoration:none;">是否在set壁纸同时使用touch effet</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Connector) -->
+      <div id="u1156" class="ax_default connector">
+        <img id="u1156_seg0" class="img " src="images/5_3_touch_effect____/u1156_seg0.svg" alt="u1156_seg0"/>
+        <img id="u1156_seg1" class="img " src="images/5_3_touch_effect____/u1156_seg1.svg" alt="u1156_seg1"/>
+        <div id="u1156_text" class="text ">
+          <p><span style="text-decoration:none;">是</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Connector) -->
+      <div id="u1157" class="ax_default connector">
+        <img id="u1157_seg0" class="img " src="images/5_3_touch_effect____/u1157_seg0.svg" alt="u1157_seg0"/>
+        <img id="u1157_seg1" class="img " src="images/5_3_touch_effect____/u1157_seg1.svg" alt="u1157_seg1"/>
+        <div id="u1157_text" class="text ">
+          <p><span style="text-decoration:none;">否</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Connector) -->
+      <div id="u1158" class="ax_default connector">
+        <img id="u1158_seg0" class="img " src="images/5_3_touch_effect____/u1158_seg0.svg" alt="u1158_seg0"/>
+        <img id="u1158_seg1" class="img " src="images/5_3_touch_effect____/u1158_seg1.svg" alt="u1158_seg1"/>
+        <img id="u1158_seg2" class="img " src="images/5_3_touch_effect____/u1158_seg2.svg" alt="u1158_seg2"/>
+        <div id="u1158_text" class="text ">
+          <p><span style="text-decoration:none;">是</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1159" class="ax_default flow_shape">
+        <div id="u1159_div" class=""></div>
+        <div id="u1159_text" class="text ">
+          <p><span style="text-decoration:none;">5.2 </span></p><p><span style="text-decoration:none;">全局开关提示</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1160" class="ax_default flow_shape">
+        <div id="u1160_div" class=""></div>
+        <div id="u1160_text" class="text ">
+          <p><span style="text-decoration:none;">5.1 </span></p><p><span style="text-decoration:none;">Touch effect 引导提示</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1161" class="ax_default flow_shape">
+        <div id="u1161_div" class=""></div>
+        <div id="u1161_text" class="text ">
+          <p><span style="text-decoration:none;">无提示</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Connector) -->
+      <div id="u1162" class="ax_default connector">
+        <img id="u1162_seg0" class="img " src="images/5_3_touch_effect____/u1162_seg0.svg" alt="u1162_seg0"/>
+        <img id="u1162_seg1" class="img " src="images/5_3_touch_effect____/u1162_seg1.svg" alt="u1162_seg1"/>
+        <div id="u1162_text" class="text ">
+          <p><span style="text-decoration:none;">否</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Diamond) -->
+      <div id="u1163" class="ax_default flow_shape">
+        <img id="u1163_img" class="img " src="images/2_1touch_effect/u245.svg"/>
+        <div id="u1163_text" class="text ">
+          <p><span style="text-decoration:none;">是否主动点击Touch effect</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1164" class="ax_default flow_shape">
+        <div id="u1164_div" class=""></div>
+        <div id="u1164_text" class="text ">
+          <p><span style="text-decoration:none;">Touch effect介绍提示&amp;set壁纸提示</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Connector) -->
+      <div id="u1165" class="ax_default connector">
+        <img id="u1165_seg0" class="img " src="images/5_3_touch_effect____/u1165_seg0.svg" alt="u1165_seg0"/>
+        <img id="u1165_seg1" class="img " src="images/5_3_touch_effect____/u1165_seg1.svg" alt="u1165_seg1"/>
+        <div id="u1165_text" class="text ">
+          <p><span style="text-decoration:none;">是</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Connector) -->
+      <div id="u1166" class="ax_default connector">
+        <img id="u1166_seg0" class="img " src="images/5_3_touch_effect____/u1166_seg0.svg" alt="u1166_seg0"/>
+        <img id="u1166_seg1" class="img " src="images/5_3_touch_effect____/u1166_seg1.svg" alt="u1166_seg1"/>
+        <div id="u1166_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1167" class="ax_default flow_shape">
+        <div id="u1167_div" class=""></div>
+        <div id="u1167_text" class="text ">
+          <p style="font-size:13px;"><span style="font-family:'PingFangSC-Regular', 'PingFang SC';font-weight:400;text-decoration:none;">后续</span></p><p style="font-size:14px;"><span style="font-family:'PingFangSC-Semibold', 'PingFang SC Semibold', 'PingFang SC';font-weight:650;text-decoration:none;">点击Touch effect,无介绍提示</span></p><p style="font-size:14px;"><span style="font-family:'PingFangSC-Semibold', 'PingFang SC Semibold', 'PingFang SC';font-weight:650;text-decoration:none;">set壁纸后Touch effect无引导提示</span></p><p style="font-size:14px;"><span style="font-family:'PingFangSC-Semibold', 'PingFang SC Semibold', 'PingFang SC';font-weight:650;text-decoration:none;">通过详情使用Touch effet全局开关提示</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Connector) -->
+      <div id="u1168" class="ax_default connector">
+        <img id="u1168_seg0" class="img " src="images/5_3_touch_effect____/u1168_seg0.svg" alt="u1168_seg0"/>
+        <img id="u1168_seg1" class="img " src="images/5_3_touch_effect____/u1168_seg1.svg" alt="u1168_seg1"/>
+        <div id="u1168_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
