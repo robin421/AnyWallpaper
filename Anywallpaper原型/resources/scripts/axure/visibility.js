@@ -339,7 +339,8 @@
             innerContainer.css({
                 position: 'relative',
                 'width': containerWidth,
-                'height': containerHeight
+                'height': containerHeight,
+                'display': 'flex'
             });
 
             innerContainer.appendTo(container);
@@ -915,6 +916,7 @@
             position: 'absolute',
             width: width,
             height: height,
+            display: 'flex'
         };
 
         if(!containerExists) {

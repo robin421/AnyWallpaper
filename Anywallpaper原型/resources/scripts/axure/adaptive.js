@@ -598,7 +598,7 @@
 
     var _setTrackpadHorizontalScroll = function (active) {
         var preventScroll = function (e) {
-            if (Math.abs(e.wheelDeltaX) > 3) {
+            if (Math.abs(e.wheelDeltaX) != 0) {
                 e.preventDefault();
             }
         }

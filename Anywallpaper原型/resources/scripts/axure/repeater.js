@@ -2225,6 +2225,13 @@ $axure.internal(function($ax) {
             var markerProp = vert ? 'top' : 'left';
             marker = Number(axChild[markerProp](true));
             childClamp = [Number(axChild[clamp.prop](true))];
+
+            if(parentLayer) {
+                var axParent = $ax('#' + parentLayer);
+                marker -= Number(axParent[markerProp](true));
+                childClamp[0] -= Number(axParent[clamp.prop](true));
+            }
+
             // Dynamic panels are not reporting correct size sometimes, so pull it from the state. Get shown state just returns the widget if it is not a dynamic panel.
             var sizeChild = _getShownStateObj(childId);
             childClamp[1] = childClamp[0] + sizeChild[clamp.offset]();
