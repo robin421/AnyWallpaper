@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" width="51px" height="81px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="65" y1="423" x2="65" y2="503" id="LinearGradient3">
+      <stop id="Stop4" stop-color="#ffffff" offset="0" />
+      <stop id="Stop5" stop-color="#f2f2f2" offset="0" />
+      <stop id="Stop6" stop-color="#e4e4e4" offset="1" />
+      <stop id="Stop7" stop-color="#ffffff" offset="1" />
+    </linearGradient>
+  </defs>
+  <g transform="translate(-40 -423 )">
+    <path d="M 65 423.5  C 70.32 423.5  74.5 427.68  74.5 433  C 74.5 438.32  70.32 442.5  65 442.5  C 59.68 442.5  55.5 438.32  55.5 433  C 55.5 427.68  59.68 423.5  65 423.5  Z " fill-rule="nonzero" fill="url(#LinearGradient3)" stroke="none" />
+    <path d="M 65 423.5  C 70.32 423.5  74.5 427.68  74.5 433  C 74.5 438.32  70.32 442.5  65 442.5  C 59.68 442.5  55.5 438.32  55.5 433  C 55.5 427.68  59.68 423.5  65 423.5  Z " stroke-width="1" stroke="#797979" fill="none" />
+    <rect fill-rule="evenodd" fill="#797979" stroke="none" x="40" y="452.5" width="50" height="1" />
+    <rect fill-rule="evenodd" fill="#797979" stroke="none" x="64.5" y="443" width="1" height="35" />
+    <path d="M 45 503  L 65 478  M 65 478  L 85 503  " stroke-width="1" stroke="#797979" fill="none" />
+  </g>
+</svg>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" width="6px" height="6px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(-1031 -709 )">
+    <path d="M 1034 709  C 1035.68 709  1037 710.32  1037 712  C 1037 713.68  1035.68 715  1034 715  C 1032.32 715  1031 713.68  1031 712  C 1031 710.32  1032.32 709  1034 709  Z " fill-rule="nonzero" fill="#7f7f7f" stroke="none" />
+    <path d="M 1034 709.5  C 1035.4 709.5  1036.5 710.6  1036.5 712  C 1036.5 713.4  1035.4 714.5  1034 714.5  C 1032.6 714.5  1031.5 713.4  1031.5 712  C 1031.5 710.6  1032.6 709.5  1034 709.5  Z " stroke-width="1" stroke="#797979" fill="none" />
+  </g>
+</svg>
