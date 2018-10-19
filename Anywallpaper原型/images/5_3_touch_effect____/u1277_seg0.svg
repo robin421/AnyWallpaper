@@ -1,11 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" width="138px" height="8px" viewBox="688 404  138 8" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+<svg version="1.1" width="8px" height="128px" viewBox="324 284  8 128" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <mask fill="white" id="clip240">
-      <path d="M 738 394  L 772 394  L 772 422  L 738 422  Z M 688 394  L 830 394  L 830 422  L 688 422  Z " fill-rule="evenodd" />
+    <mask fill="white" id="clip95">
+      <path d="M 355 394  L 389 394  L 389 422  L 355 422  Z M 325 284  L 548 284  L 548 422  L 325 422  Z " fill-rule="evenodd" />
     </mask>
   </defs>
-  <path d="M 815 415.6  L 822 408  L 815 400.4  L 815 415.6  Z " fill-rule="nonzero" fill="#0099ff" stroke="none" mask="url(#clip240)" />
-  <rect fill-rule="evenodd" fill="#0099ff" stroke="none" x="688" y="407" width="128" height="2" mask="url(#clip240)" />
-  <path d="" stroke-width="2" stroke="#0099ff" fill="none" mask="url(#clip240)" />
+  <path d="M 533 415.6  L 540 408  L 533 400.4  L 533 415.6  Z " fill-rule="nonzero" fill="#0099ff" stroke="none" mask="url(#clip95)" />
+  <path d="M 328 284  L 328 403  A 5 5  0 0 0 333 408  L 534 408  " stroke-width="2" stroke="#0099ff" fill="none" mask="url(#clip95)" />
 </svg>

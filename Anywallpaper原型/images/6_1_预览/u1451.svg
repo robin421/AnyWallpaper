@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" width="311px" height="22px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate(-467 -720 )">
-    <path d="M 761 738.6  L 768 731  L 761 723.4  L 761 738.6  Z " fill-rule="nonzero" fill="#0099ff" stroke="none" />
-    <rect fill-rule="evenodd" fill="#0099ff" stroke="none" x="468" y="730" width="294" height="2" />
+<svg version="1.1" width="194px" height="22px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(-231 -721 )">
+    <path d="M 408 739.6  L 415 732  L 408 724.4  L 408 739.6  Z " fill-rule="nonzero" fill="#0099ff" stroke="none" />
+    <rect fill-rule="evenodd" fill="#0099ff" stroke="none" x="232" y="731" width="177" height="2" />
     <path d="" stroke-width="2" stroke="#0099ff" fill="none" />
   </g>
 </svg>
