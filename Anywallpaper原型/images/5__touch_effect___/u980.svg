@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <svg version="1.1" width="44px" height="2px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
   <g transform="translate(-884 -805 )">
-    <rect fill-rule="evenodd" fill="#797979" stroke="none" x="884" y="805" width="43" height="1" />
-    <path d="" stroke-width="1" stroke="#797979" fill="none" />
+    <path d="M 884 805.5  L 927 805.5  " stroke-width="1" stroke="#797979" fill="none" />
   </g>
 </svg>

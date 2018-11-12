@@ -2,7 +2,6 @@
 <svg version="1.1" width="105px" height="22px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
   <g transform="translate(-305 -223 )">
     <path d="M 393 241.6  L 400 234  L 393 226.4  L 393 241.6  Z " fill-rule="nonzero" fill="#0099ff" stroke="none" />
-    <rect fill-rule="evenodd" fill="#0099ff" stroke="none" x="306" y="233" width="88" height="2" />
-    <path d="" stroke-width="2" stroke="#0099ff" fill="none" />
+    <path d="M 306 234  L 394 234  " stroke-width="2" stroke="#0099ff" fill="none" />
   </g>
 </svg>

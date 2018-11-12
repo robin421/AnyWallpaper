@@ -5,7 +5,6 @@
       <path d="M 193 288  L 313 288  L 313 334  L 193 334  Z M 155 288  L 359 288  L 359 334  L 155 334  Z " fill-rule="evenodd" />
     </mask>
   </defs>
+  <path d="M 193 311  L 155 311  M 313 311  L 345 311  " stroke-width="2" stroke="#0099ff" fill="none" />
   <path d="M 344 318.6  L 351 311  L 344 303.4  L 344 318.6  Z " fill-rule="nonzero" fill="#0099ff" stroke="none" mask="url(#clip67)" />
-  <rect fill-rule="evenodd" fill="#0099ff" stroke="none" x="155" y="310" width="190" height="2" mask="url(#clip67)" />
-  <path d="" stroke-width="2" stroke="#0099ff" fill="none" mask="url(#clip67)" />
 </svg>

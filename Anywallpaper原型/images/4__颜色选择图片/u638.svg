@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" width="18px" height="18px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate(-501 -407 )">
-    <path d="M 510 407.5  C 514.76 407.5  518.5 411.24  518.5 416  C 518.5 420.76  514.76 424.5  510 424.5  C 505.24 424.5  501.5 420.76  501.5 416  C 501.5 411.24  505.24 407.5  510 407.5  Z " fill-rule="nonzero" fill="#2a2a2a" stroke="none" fill-opacity="0.309803921568627" />
+<svg version="1.1" width="105px" height="22px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(-305 -223 )">
+    <path d="M 393 241.6  L 400 234  L 393 226.4  L 393 241.6  Z " fill-rule="nonzero" fill="#0099ff" stroke="none" />
+    <path d="M 306 234  L 394 234  " stroke-width="2" stroke="#0099ff" fill="none" />
   </g>
 </svg>
