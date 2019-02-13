@@ -1238,12 +1238,20 @@
         _rotatedIds[scriptId] = rotation;
     };
 
-    $ax.visibility.clearMovedAndResized = function (ids) {
+    $ax.visibility.clearMovedAndResized = function () {
         _movedIds = _visibility.movedIds = {};
         _resizedIds = _visibility.resizedIds = {};
         _rotatedIds = _visibility.rotatedIds = {};
     };
 
+    $ax.visibility.clearMovedAndResizedIds = function (elementIds) {
+        for (var i = 0; i < elementIds.length; i++) {
+            var id = elementIds[i];
+            delete _movedIds[id];
+            delete _resizedIds[id];
+            delete _rotatedIds[id];
+        }
+    };
 
     $ax.visibility.initialize = function() {
         // initialize initial visible states

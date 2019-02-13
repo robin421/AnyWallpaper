@@ -1,21 +1,21 @@
 ﻿var currentNodeUrl = '';
 var allNodeUrls = [];
 
-function openNextPage() {
+var openNextPage = $axure.player.openNextPage = function () {
     var index = allNodeUrls.indexOf(currentNodeUrl) + 1;
     if(index >= allNodeUrls.length) return;
     var nextNodeUrl = allNodeUrls[index];
     currentNodeUrl = nextNodeUrl;
     $('.sitemapPageLink[nodeUrl="' + nextNodeUrl + '"]').parent().mousedown();
-}
+};
 
-function openPreviousPage() {
+var openPreviousPage = $axure.player.openPreviousPage = function () {
     var index = allNodeUrls.indexOf(currentNodeUrl) - 1;
     if(index < 0) return;
     var nextNodeUrl = allNodeUrls[index];
     currentNodeUrl = nextNodeUrl;
     $('.sitemapPageLink[nodeUrl="' + nextNodeUrl + '"]').parent().mousedown();
-}
+};
 
 // use this to isolate the scope
 (function() {
@@ -196,8 +196,8 @@ function openPreviousPage() {
         $viewSelect.empty();
 
         //Fill out adaptive view container with prototype's defined adaptive views, as well as the default, and Auto
-        var viewsList = '<div class="' + adaptiveViewOptionClass + '" val="auto"><div class="adapViewRadioButton selectedRadioButton"><div class="selectedRadioButtonFill"></div></div>Auto</div>';
-        var viewSelect = '<option value="auto">Auto</option>';
+        var viewsList = '<div class="' + adaptiveViewOptionClass + '" val="auto"><div class="adapViewRadioButton selectedRadioButton"><div class="selectedRadioButtonFill"></div></div>Adaptive</div>';
+        var viewSelect = '<option value="auto">Adaptive</option>';
         if (typeof $axure.page.defaultAdaptiveView.name != 'undefined') {
             //If the name is a blank string, make the view name the width if non-zero, else 'any'
             var defaultView = $axure.page.defaultAdaptiveView;
@@ -341,6 +341,15 @@ function openPreviousPage() {
         }
     });
 
+    $axure.player.toggleHotspots = function (val) {
+        var overflowMenuCheckbox = $('#showHotspotsOption').find('.overflowOptionCheckbox');
+        if ($(overflowMenuCheckbox).hasClass('selected')) {
+            if (!val) $('#showHotspotsOption').click();
+        } else {
+            if (val) $('#showHotspotsOption').click();
+        }
+    }
+
     function showHotspots_click(event) {
         var overflowMenuCheckbox = $('#showHotspotsOption').find('.overflowOptionCheckbox');
         var projOptionsCheckbox = $('#projectOptionsHotspotsCheckbox');
@@ -364,12 +373,22 @@ function openPreviousPage() {
     function adaptiveViewOption_click(event) {
         var currVal = $(this).attr('val');
 
+        $('.adaptiveViewOption').removeClass('currentAdaptiveView');
+        if(currVal) {$('.adaptiveViewOption[val="' + currVal + '"]').addClass('currentAdaptiveView');}
+        else $('.adaptiveViewOption[val="default"]').addClass('currentAdaptiveView');
+
         $('.adapViewRadioButton').find('.selectedRadioButtonFill').hide();
         $('.adapViewRadioButton').removeClass('selectedRadioButton');
         $('div[val="' + currVal + '"]').find('.adapViewRadioButton').addClass('selectedRadioButton');
         $('div[val="' + currVal + '"]').find('.selectedRadioButtonFill').show();
 
-        if(currVal == 'auto') {
+        selectAdaptiveView(currVal);
+        $axure.player.closePopup();
+        updateAdaptiveViewHeader();
+    }
+
+    var selectAdaptiveView = $axure.player.selectAdaptiveView = function(currVal) {
+        if (currVal == 'auto') {
             $axure.messageCenter.postMessage('setAdaptiveViewForSize', { 'width': $('#mainPanel').width(), 'height': $('#mainPanel').height() });
             $axure.player.deleteVarFromCurrentUrlHash(ADAPTIVE_VIEW_VAR_NAME);
         } else {
@@ -386,18 +405,27 @@ function openPreviousPage() {
             $axure.messageCenter.postMessage('switchAdaptiveView', adaptiveData);
             $axure.player.setVarInCurrentUrlHash(ADAPTIVE_VIEW_VAR_NAME, currVal);
         }
-        
-        $axure.player.closePopup();
-        updateAdaptiveViewHeader();
     }
 
-    function updateAdaptiveViewHeader() {
-        var $viewOption = $('.selectedRadioButton').parents('.adaptiveViewOption');
-        var currVal = $viewOption.length > 0 ? $viewOption.text() : 'Auto';
-        if (currVal == 'Auto') {
-            currVal = currVal + " - " + $('.currentAdaptiveView').text();
+    $axure.player.updateAdaptiveViewHeader = updateAdaptiveViewHeader = function () {
+        var hasDefinedDim = true;
+        var dimensionlessViewStr = '(any x any)';
+
+        var viewString = $('.adaptiveViewOption.currentAdaptiveView').text();
+        if (viewString != null && viewString.indexOf(dimensionlessViewStr) >= 0) hasDefinedDim = false;
+
+        if (!hasDefinedDim) {
+            var viewName = viewString.substring(0, viewString.lastIndexOf(' ('));
+            var widthString = $('#mainPanelContainer').width();
+            viewString = viewName + ' (' + widthString + ' x any)';
         }
-        $('.adaptiveViewHeader').html(currVal);
+
+        $('.adaptiveViewHeader').html(viewString);
+    }
+
+    $axure.player.selectScaleOption = function (scaleVal) {
+        var $scale = $('.vpScaleOption[val="' + scaleVal + '"]');
+        if ($scale.length > 0) $scale.click();
     }
 
     function vpScaleOption_click(event) {

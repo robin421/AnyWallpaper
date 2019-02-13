@@ -310,7 +310,7 @@ $axure.internal(function($ax) {
         if(viewId) $ax.adaptive.applyView(viewId, query);
         else $ax.visibility.resetLimboAndHiddenToDefaults(_getItemQuery(repeaterId, preevalMap));
 
-        $ax.annotation.createFootnotes(query);
+        $ax.annotation.createFootnotes(query, true);
 
         for(var index = 0; index < ids.length; index++) {
             id = ids[index];
@@ -861,6 +861,7 @@ $axure.internal(function($ax) {
         var itemId = $ax.getItemIdsForRepeater(repeaterId);
         for(var i = 0; i < itemId.length; i++) $jobj(_createElementId(repeaterId, itemId[i])).remove();
         $ax.visibility.clearLimboAndHiddenIds(elementIds);
+        $ax.visibility.clearMovedAndResizedIds(elementIds);
         $ax.clearItemsForRepeater(repeaterId);
     };
 
@@ -1308,8 +1309,13 @@ $axure.internal(function($ax) {
     };
     _repeaterManager.applySuffixToElementId = _applySuffixToElementId;
 
-    var _removeSuffixFromElementId = function(id) {
-        if (id.indexOf('_') != -1) return id.split('_', 1)[0];
+    var _removeSuffixFromElementId = function (id) {
+        var suffixId = id.indexOf('_');
+        if(suffixId != -1) return id.substr(0, suffixId);
+
+        var partId = id.indexOf('p');
+        if(partId != -1) return _createElementId(id.substr(0, partId), _getItemIdFromElementId(id)); // item id is after part, but before suffix
+
         return id;
     }
     _repeaterManager.removeSuffixFromElementId = _removeSuffixFromElementId;
@@ -1385,13 +1391,15 @@ $axure.internal(function($ax) {
         // Otherwise, try to get parent repeater
         var parentRepeaterId = $ax.getParentRepeaterFromElementId(widgetId);
         var repeaterObj = $obj(parentRepeaterId);
-        if(!repeaterObj || widgetId == parentRepeaterId || !repeaterObj.repeaterPropMap.fitToContent) return;
-        var itemId = $ax.repeater.getItemIdFromElementId(widgetId);
-        //var size = getContainerSize($ax.repeater.createElementId(parentRepeaterId, itemId));
-        //$ax.repeater.setItemSize(parentRepeaterId, itemId, size.width, size.height);
-        var containerId = $ax.repeater.createElementId(parentRepeaterId, itemId);
-        var childrenRect = $ax('#' + containerId).childrenBoundingRect();
-        $ax.repeater.setItemSize(parentRepeaterId, itemId, childrenRect.right, childrenRect.bottom);
+        if (repeaterObj && widgetId != parentRepeaterId && repeaterObj.repeaterPropMap.fitToContent) {
+            var itemId = $ax.repeater.getItemIdFromElementId(widgetId);
+            var containerId = $ax.repeater.createElementId(parentRepeaterId, itemId);
+            var childrenRect = $ax('#' + containerId).childrenBoundingRect();
+            $ax.repeater.setItemSize(parentRepeaterId, itemId, childrenRect.right, childrenRect.bottom);
+            return;
+        }
+
+        $ax.adaptive.updateMobileScrollOnBody();
     };
     _dynamicPanelManager.fitParentPanel = _fitParentPanel;
 
@@ -1428,7 +1436,7 @@ $axure.internal(function($ax) {
             stateQuery.niceScroll({ touchbehavior: true, bouncescroll: false, grabcursorenabled: false, railmargin: { top: headerHeight, bottom: footerHeight }, scrollbarid: stateId + "-sb" });
             stateQuery.find('.nicescroll-rails').css('margin-top', headerHeight + 'px');
         } else {
-            stateQuery.niceScroll('#' + stateContentId, { touchbehavior: true });
+            stateQuery.niceScroll('#' + stateContentId, { emulatetouch: true });
             //stateQuery.getNiceScroll().resize();
             //$stateContent.css('height', '');
         }

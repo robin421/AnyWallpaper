@@ -917,7 +917,6 @@ $axure.internal(function($ax) {
         if($scrollable.is('body')) {
             $scrollable = $('html,body');
         }
-
         if(easing == 'none') {
             if(scrollY) $scrollable.scrollTop(targetTop);
             if(scrollX) $scrollable.scrollLeft(targetLeft);
@@ -947,6 +946,7 @@ $axure.internal(function($ax) {
         var scrollX = true;
         var scrollY = true;
 
+        // TODO: check this without vertical option -- might scroll outside of device frame
         if(scrollOption.direction == 'vertical') {
             scrollX = false;
         } else if(scrollOption.direction == 'horizontal') {
@@ -1099,6 +1099,9 @@ $axure.internal(function($ax) {
     $ax.public.fn.focus = function() {
         var firstId = this.getElementIds()[0];
         var focusableId = $ax.event.getFocusableWidgetOrChildId(firstId);
+        // This will scroll but not focus
+        $('#' + focusableId).triggerHandler("focus");
+        // This will focus but does not call our custom scroll so will not animate scroll
         $('#' + focusableId).focus();
 
         return this;
@@ -1489,7 +1492,10 @@ $axure.internal(function($ax) {
                 top: loc.top + parentLoc.top,
              }
             var axObj = $obj(parentId);
-            if(axObj && axObj.fixedVertical) break;
+            if(axObj && axObj.fixedVertical) {
+                boundingRect.isFixed = true;
+                break;
+            }
         }
 
         boundingRect.left = loc.x;

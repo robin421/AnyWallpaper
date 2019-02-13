@@ -14,13 +14,13 @@ $axure.internal(function ($ax) {
     //        else $('#' + elementId).removeClass('widgetNoteSelected');
     //    }
     //}
-
-    //var lastSelectedWidgetNote;
     $ax.messageCenter.addMessageListener(function (message, data) {
         //If annotation toggle message received from sitemap, toggle footnotes
         if(message == 'toggleSelectWidgetNote') {
 
-            $('.widgetNoteSelected').removeClass('widgetNoteSelected');
+            if (!IOS) {
+                $('.widgetNoteSelected').removeClass('widgetNoteSelected');
+            }
 
             if(!data.value) return;
 
@@ -31,42 +31,13 @@ $axure.internal(function ($ax) {
 
             $ax('*').each(function(obj, elementId) {
                 if (obj.id == data.id) {
-                    $('#' + elementId).addClass('widgetNoteSelected');
+                    if (!IOS) {
+                        $('#' + elementId).addClass('widgetNoteSelected');
+                    }
 
                     _scrollToSelectedNote($('#' + elementId), data.view);
                 }
             });
-
-            //lastSelectedWidgetNote = data.id;
-
-            //var dataSplit = data.split('@');
-
-            //if(lastSelectedWidgetNote == data) {
-            //    if(dataSplit.length === 2) {
-            //        _toggleSelectWidgetNoteForRepeater(dataSplit[0], dataSplit[1], false);
-            //    } else {
-            //        if (lastSelectedWidgetNote.length > 0) $('#' + lastSelectedWidgetNote).removeClass('widgetNoteSelected');
-            //    }
-            //    lastSelectedWidgetNote = null;
-            //    return;
-            //}
-
-            //if(lastSelectedWidgetNote) {
-            //    var lastDataSplit = lastSelectedWidgetNote.split('@');
-            //    if(lastDataSplit.length === 2) {
-            //        _toggleSelectWidgetNoteForRepeater(lastDataSplit[0], lastDataSplit[1], false);
-            //    } else {
-            //       $('#' + lastSelectedWidgetNote).removeClass('widgetNoteSelected');
-            //    }
-            //}
-
-            //if(dataSplit.length > 1) {
-            //    _toggleSelectWidgetNoteForRepeater(dataSplit[0], dataSplit[1], true);
-            //} else {
-            //    if(data.length > 0) $('#' + data).addClass('widgetNoteSelected');
-            //}
-
-            //lastSelectedWidgetNote = data;
         }
     });
 
@@ -74,15 +45,15 @@ $axure.internal(function ($ax) {
         var isLandscape = IOS ? window.orientation != 0 && window.orientation != 180 : false;
         var winWidth = !IOS ? $(window).width() : (isLandscape ? window.screen.height : window.screen.width) - view.panelWidthOffset;
         var winHeight = !IOS ? $(window).height() : view.height;
-        var docLeft = !IOS ? $(document).scrollLeft() : view.scrollLeft;
-        var docTop = !IOS ? $(document).scrollTop() : view.scrollTop;
+        var docLeft = $('html').last().scrollLeft();
+        var docTop = $('html').last().scrollTop();
         var docRight = docLeft + winWidth;
         var docBottom = docTop + winHeight;
 
         var scale = $('#base').css('transform');;
         scale = (scale == "none") ? 1 : Number(scale.substring(scale.indexOf('(') + 1, scale.indexOf(',')));
 
-        var bodyLeft = $('body').css('left') !== undefined ? Number($('body').css('left').replace('px','')) : 0;
+        var bodyLeft = ($('body').css('left') !== undefined && $('body').css('left') !== "auto") ? Number($('body').css('left').replace('px','')) : 0;
         var top = scale * Number($elmt.css('top').replace('px', ''));
         var bottom = top + scale * $elmt.height();
         var left = scale * Number($elmt.css('left').replace('px', '')) + bodyLeft;
@@ -117,22 +88,12 @@ $axure.internal(function ($ax) {
         }
 
         // TODO: need to do something for dynamic panel with scroll
-        if (IOS) {
-            var scrollProps = {
-                doHorizontalMove: doHorizontalMove,
-                doVerticalMove: doVerticalMove,
-                newScrollLeft: newScrollLeft,
-                newScrollTop: newScrollTop
-            };
-            $axure.messageCenter.postMessage('doWidgetNoteScroll', scrollProps);
-        } else {
-            if (doHorizontalMove && doVerticalMove) {
-                $("html, body").animate({ scrollLeft: newScrollLeft + "px", scrollTop: newScrollTop + "px" }, 300);
-            } else if (doHorizontalMove) {
-                $("html, body").animate({ scrollLeft: newScrollLeft + "px" }, 300);
-            } else if (doVerticalMove) {
-                $("html, body").animate({ scrollTop: newScrollTop + "px" }, 300);
-            }
+        if (doHorizontalMove && doVerticalMove) {
+            $("html, body").animate({ scrollLeft: newScrollLeft, scrollTop: newScrollTop }, 300);
+        } else if (doHorizontalMove) {
+            $("html, body").animate({ scrollLeft: newScrollLeft }, 300);
+        } else if (doVerticalMove) {
+            $("html, body").animate({ scrollTop: newScrollTop }, 300);
         }
     }
 

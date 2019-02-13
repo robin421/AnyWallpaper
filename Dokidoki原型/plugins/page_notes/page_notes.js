@@ -1,14 +1,23 @@
 ﻿// use this to isolate the scope
 (function () {
-    if(!$axure.document.configuration.showPageNotes && !$axure.document.configuration.showAnnotationsSidebar) { return; }
+    // No notes shown specified by generation config
+    if (!$axure.document.configuration.showPageNotes && !$axure.document.configuration.showAnnotationsSidebar && !$axure.document.configuration.showAnnotations) { return; }
 
     $(window.document).ready(function () {
-        $axure.player.createPluginHost({
-            id: 'pageNotesHost',
-            context: 'inspect',
-            title: 'Documentation',
-            gid: 2,
-        });
+        // Load right panel for Page Notes
+        if ($axure.document.configuration.showPageNotes || $axure.document.configuration.showAnnotationsSidebar) {
+            $axure.player.createPluginHost({
+                id: 'pageNotesHost',
+                context: 'inspect',
+                title: 'Documentation',
+                gid: 2,
+            });
+        }
+
+        // Load footnotes on widgets
+        if ($axure.document.configuration.showAnnotations) {
+            $('#overflowMenuContainer').prepend('<div id="showNotesOption" class="showOption" style="order: 3"><div class="overflowOptionCheckbox"></div>Show Note Markers</div>');
+        }
 
         createNotesOverlay();
         generatePageNotes();
@@ -113,8 +122,6 @@
                         var viewDimensions = {
                             h: h != '0' ? h : '',
                             scaleVal: $('.vpScaleOption').find('.selectedRadioButton').parent().attr('val'),
-                            scrollLeft: $('#clipFrameScroll').scrollLeft(),
-                            scrollTop: $('#clipFrameScroll').scrollTop(),
                             height: $('.rightPanel').height(),
                             panelWidthOffset: leftPanelOffset + rightPanelOffset
                         };
@@ -378,6 +385,21 @@
         var selectedNote = $('#pageNotesContainer').find('.widgetNoteContainerSelected');
         if(selectedNote.length > 0) {
             selectedNote.removeClass('widgetNoteContainerSelected');
+            //var dimStr = $('.currentAdaptiveView').attr('data-dim');
+            //var h = dimStr ? dimStr.split('x')[1] : '0';
+            //var $leftPanel = $('.leftPanel:visible');
+            //var leftPanelOffset = (!$axure.player.isMobileMode() && $leftPanel.length > 0) ? $leftPanel.width() : 0;
+            //var $rightPanel = $('.rightPanel:visible');
+            //var rightPanelOffset = (!$axure.player.isMobileMode() && $rightPanel.length > 0) ? $rightPanel.width() : 0;
+            //var viewDimensions = {
+            //    h: h != '0' ? h : '',
+            //    scaleVal: $('.vpScaleOption').find('.selectedRadioButton').parent().attr('val'),
+            //    scrollLeft: $('#clipFrameScroll').scrollLeft(),
+            //    scrollTop: $('#clipFrameScroll').scrollTop(),
+            //    height: $('.rightPanel').height(),
+            //    panelWidthOffset: leftPanelOffset + rightPanelOffset
+            //};
+            //$axure.messageCenter.postMessage('toggleSelectWidgetNote', { id: '', value: false, view: viewDimensions });
             $axure.messageCenter.postMessage('toggleSelectWidgetNote', { id: '', value: false });
             //$axure.messageCenter.postMessage('toggleSelectWidgetNote', '');
         }
@@ -390,8 +412,17 @@
         }
     }
 
+    $axure.player.toggleFootnotes = function(val) {
+        var scaleCheckDiv = $('#showNotesOption').find('.overflowOptionCheckbox');
+        if (scaleCheckDiv.hasClass('selected')) {
+            if (!val) $('#showNotesOption').click();
+        } else {
+            if (val) $('#showNotesOption').click();
+        }
+    }
+
     function footnotes_click(event) {
-        var scaleCheckDiv = $(this).find('.overflowOptionCheckbox');
+        var scaleCheckDiv = $('#showNotesOption').find('.overflowOptionCheckbox');
         if (scaleCheckDiv.hasClass('selected')) {
             closeAllDialogs();
 

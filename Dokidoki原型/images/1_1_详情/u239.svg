@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" width="26px" height="25px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate(-1968 -1330 )">
-    <path d="M 1968.5 1330.5  L 1993.5 1330.5  L 1993.5 1354.5  L 1968.5 1354.5  L 1968.5 1330.5  Z " fill-rule="nonzero" fill="#666666" stroke="none" />
-    <path d="M 1968.5 1330.5  L 1993.5 1330.5  L 1993.5 1354.5  L 1968.5 1354.5  L 1968.5 1330.5  Z " stroke-width="1" stroke="#d7d7d7" fill="none" />
-    <path d="M 1968.37483319375 1330.36041653245  L 1993.62516680625 1354.63958346755  M 1993.62516680625 1330.36041653245  L 1968.37483319375 1354.63958346755  " stroke-width="1" stroke="#d7d7d7" fill="none" />
+<svg version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="22px" height="17px" xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(1 0 0 1 -2140 -1377 )">
+    <path d="M 0.5 7.5  L 7.31249999999994 14  L 19 0  " stroke-width="2" stroke="#7f7f7f" fill="none" transform="matrix(1 0 0 1 2141 1378 )" />
   </g>
 </svg>

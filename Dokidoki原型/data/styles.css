@@ -140,3 +140,4 @@
 }
 .line {
 }
+textarea, select, input, button { outline: none; }

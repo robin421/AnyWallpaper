@@ -7,9 +7,12 @@ var ADAPTIVE_VIEW_VAR_NAME = 'view';
 var SCALE_VAR_NAME = 'sc';
 var DIM_VAR_NAME = 'dm';
 var ROT_VAR_NAME = 'r';
+var CLOUD_VAR_NAME = 'cl';
 var RP_VERSION = 9;
 var lastLeftPanelWidth = 220;
 var lastRightPanelWidth = 220;
+var lastLeftPanelWidthDefault = 220;
+var lastRightPanelWidthDefault = 220;
 var toolBarOnly = true;
 // TODO: need to find a way to get rid of iphone X hacks!!!
 // - could possibly have app detect iphone and send information back to player, but currently, that information would arrive too late
@@ -27,6 +30,20 @@ var iphoneXFirstPass = true;
     if (window._axUtils) $axure.utils = _axUtils;
 
     setUpController();
+
+    var getHashStringVar = $axure.player.getHashStringVar = function (query) {
+        var qstring = self.location.href.split("#");
+        if (qstring.length < 2) return "";
+        return GetParameter(qstring, query);
+    }
+
+    var isCloud = $axure.player.isCloud = getHashStringVar(CLOUD_VAR_NAME);
+    if (isCloud) {
+        $("#topPanel").css('display', 'none');
+        lastRightPanelWidthDefault = 290;
+    }else {
+        $("#topPanel").css('display', '');
+    }
 
     $axure.loadDocument = function (document) {
         $axure.document = document;
@@ -242,9 +259,6 @@ var iphoneXFirstPass = true;
         $('#mainPanel').scroll(function () {
             repositionClippingBoundsScroll();
         });
-        $('#clipFrameScroll').scroll(function () {
-            repositionClippingBoundsScroll();
-        });
     }
 
     function initializeMainFrame() {
@@ -422,6 +436,7 @@ var iphoneXFirstPass = true;
             if (!isViewOverridden() && !isAnimating) $axure.messageCenter.postMessage('setAdaptiveViewForSize', { 'width': $('#mainPanel').width(), 'height': $('#mainPanel').height() });
             //if (!isViewOverridden()) $axure.messageCenter.postMessage('setAdaptiveViewForSize', { 'width': $('#mainPanel').width(), 'height': $('#mainPanel').height() });
             $axure.player.refreshViewPort();
+            if ($axure.player.updateAdaptiveViewHeader != null) $axure.player.updateAdaptiveViewHeader();
         }
     }
 
@@ -438,7 +453,6 @@ var iphoneXFirstPass = true;
 
             $axure.player.updatePlugins();
 
-            $('#clipFrameScroll').css('overflow', '');
             $('#mHideSidebar').hide();
             $('#mobileBrowserControlFrame').hide();
             $('#nativeAppControlFrame').hide();
@@ -524,15 +538,15 @@ var iphoneXFirstPass = true;
             }
             $('.rightPanel').css('height', '');
             if ($('.rightPanel').is(':visible')) {
-                var newWidth = Math.min($(window).width() - 220, $('.rightPanel').width(), $(window).width() - $('.leftPanel').width());
-                lastRightPanelWidth = Math.max(220, newWidth);
-                $('.rightPanel').width(lastRightPanelWidth != 0 ? lastRightPanelWidth : 220);
+                var newWidth = Math.min($(window).width() - lastRightPanelWidthDefault, $('.rightPanel').width(), $(window).width() - $('.leftPanel').width());
+                lastRightPanelWidth = Math.max(lastRightPanelWidthDefault, newWidth);
+                $('.rightPanel').width(lastRightPanelWidth != 0 ? lastRightPanelWidth : lastRightPanelWidthDefault);
                 $('#rsplitbar').css('left', $(window).width() - $('.rightPanel').width());
             }
             if ($('.leftPanel').is(':visible')) {
-                var newWidth = Math.min($(window).width() - 220, $('.leftPanel').width(), $(window).width() - $('.rightPanel').width());
-                lastLeftPanelWidth = Math.max(220, newWidth);
-                $('.leftPanel').width(lastLeftPanelWidth != 0 ? lastLeftPanelWidth : 220);
+                var newWidth = Math.min($(window).width() - lastLeftPanelWidthDefault, $('.leftPanel').width(), $(window).width() - $('.rightPanel').width());
+                lastLeftPanelWidth = Math.max(lastLeftPanelWidthDefault, newWidth);
+                $('.leftPanel').width(lastLeftPanelWidth != 0 ? lastLeftPanelWidth : lastLeftPanelWidthDefault);
                 $('#lsplitbar').css('left', $('.leftPanel').width() - 4);
             }
         }
@@ -747,14 +761,14 @@ var iphoneXFirstPass = true;
     // returns to false when lsplitbar (switched to clippingBounds) finishes animation (thus panels will be fully expanded or retracted at this point)
     var isAnimating = $axure.player.isAnimating = false;
 
-    $axure.player.collapseToBar = function (context) {
+    $axure.player.collapseToBar = function (context, hostId) {
         lastLeftPanelWidth = $('.leftPanel').width();
         lastRightPanelWidth = $('.rightPanel').width();
         if (context === 'project' || context === 'all') {
 
             if(!isMobileMode()) {
                 isAnimating = true;
-                var newWidth = lastLeftPanelWidth != 0 ? lastLeftPanelWidth : 220;
+                var newWidth = lastLeftPanelWidth != 0 ? lastLeftPanelWidth : lastLeftPanelWidthDefault;
                 var clippingWidth = calculateClippingBoundsWidth(0, true);
                 var newLeft = calculateScrollLeftWithOffset(newWidth, true);
 
@@ -768,6 +782,7 @@ var iphoneXFirstPass = true;
                     { duration: 200, complete: function () {
                         isAnimating = false;
                         $axure.player.resizeContent();
+                        $axure.player.pluginVisibleChanged(hostId, false);
                     }});
             } else {
                 $('.leftPanel').width(0);
@@ -777,7 +792,7 @@ var iphoneXFirstPass = true;
         if (context === 'inspect' || context === 'all') {
             if (!isMobileMode()) {
                 isAnimating = true;
-                var newWidth = lastRightPanelWidth != 0 ? lastRightPanelWidth : 220;
+                var newWidth = lastRightPanelWidth != 0 ? lastRightPanelWidth : lastRightPanelWidthDefault;
                 var clippingWidth = calculateClippingBoundsWidth(0, false); 
                 var newLeft = calculateScrollLeftWithOffset(newWidth, false);
 
@@ -791,6 +806,7 @@ var iphoneXFirstPass = true;
                     { duration: 200, complete: function () {
                         isAnimating = false;
                         $axure.player.resizeContent();
+                        $axure.player.pluginVisibleChanged(hostId, false);
                     }});
             } else {
                 $('.rightPanel').width(0);
@@ -809,7 +825,7 @@ var iphoneXFirstPass = true;
             $('.leftPanel').removeClass('popup');
             if(!isMobileMode()) {
                 isAnimating = true;
-                var newWidth = (lastLeftPanelWidth != 0 ? lastLeftPanelWidth : 220);
+                var newWidth = (lastLeftPanelWidth != 0 ? lastLeftPanelWidth : lastLeftPanelWidthDefault);
                 var clippingWidth = calculateClippingBoundsWidth(newWidth, true);
                 var newLeft = calculateScrollLeftWithOffset(-newWidth, true);
 
@@ -827,16 +843,18 @@ var iphoneXFirstPass = true;
                         isAnimating = false;
                         $axure.player.resizeContent();
                         if (isFinalPluginToRestore) $('#clippingBoundsScrollContainer').show();
+                        $axure.player.pluginVisibleChanged(hostId, true);
                     }});
             }
         } else {
             if($('#rsplitbar').is(':visible')) {
                 $('#' + hostId).show();
+                $axure.player.pluginVisibleChanged(hostId, true);
                 return;
             }
             if (!isMobileMode()) {
                 isAnimating = true;
-                var newWidth = lastRightPanelWidth != 0 ? lastRightPanelWidth : 220;
+                var newWidth = lastRightPanelWidth != 0 ? lastRightPanelWidth : lastRightPanelWidthDefault;
                 var clippingWidth = calculateClippingBoundsWidth(newWidth, false);
                 var newLeft = calculateScrollLeftWithOffset(-newWidth, false);
 
@@ -855,6 +873,7 @@ var iphoneXFirstPass = true;
                         isAnimating = false;
                         $axure.player.resizeContent();
                         if (isFinalPluginToRestore) $('#clippingBoundsScrollContainer').show();
+                        $axure.player.pluginVisibleChanged(hostId, true);
                     }});
             }
         }
@@ -879,12 +898,6 @@ var iphoneXFirstPass = true;
         var scaleVal = $('.vpScaleOption').find('.selectedRadioButton').parent().attr('val');
         $axure.player.noFrame = false;
         if (h && scaleVal == 1) $axure.player.noFrame = true;
-        if (h || (scaleVal == 1)) {
-            $('#clipFrameScroll').scrollLeft(0);
-            $('#clipFrameScroll').css('overflow-x', 'hidden');
-        } else {
-            $('#clipFrameScroll').css('overflow-x', '');
-        }
 
         var clipToView = h && !$axure.player.noFrame;
 
@@ -930,7 +943,7 @@ var iphoneXFirstPass = true;
             $('#mainPanelContainer').width(w + leftPadding + rightPadding);
             $('#mainPanelContainer').height(h + topPadding + bottomPadding);
 
-            $axure.messageCenter.postMessage('setDeviceMode', { device: true });
+            $axure.messageCenter.postMessage('setDeviceMode', { device: true, width: w });
         } else {
             $('#mainFrame').width('100%');
             $('#mainFrame').height(h);
@@ -955,50 +968,27 @@ var iphoneXFirstPass = true;
         prevScaleN = (prevScaleN == "none") ? 1 : Number(prevScaleN.substring(prevScaleN.indexOf('(') + 1, prevScaleN.indexOf(',')));
         var newScaleN = 1;
 
+        $('#mainPanelContainer').css({
+            'transform': '',
+            'transform-origin': ''
+        });
+
         var $leftPanel = $('.leftPanel:visible');
         var leftPanelOffset = (!isMobileMode() && $leftPanel.length > 0) ? $leftPanel.width() : 0;
         var $rightPanel = $('.rightPanel:visible');
         var rightPanelOffset = (!isMobileMode() && $rightPanel.length > 0) ? $rightPanel.width() : 0;
-        if(!clipToView) {
-            var vpScaleData = {
-                scale: scaleVal,
-                viewportHeight: h,
-                viewportWidth: (scaleVal == "1") ? frameWidth : 0,
-                panelWidthOffset: leftPanelOffset + rightPanelOffset
-            };
-            $axure.messageCenter.postMessage('setScale', vpScaleData);
-            $('#mainPanelContainer').css({
-                'transform': '',
-                'transform-origin': ''
-            });
-        } else {
-            var vpScaleData = {
-                scale: '0',
-                viewportHeight: h,
-                viewportWidth: frameWidth,
-                panelWidthOffset: leftPanelOffset + rightPanelOffset
-            };
-            $axure.messageCenter.postMessage('setScale', vpScaleData);
 
-            if(scaleVal == '0' || scaleVal == '1') {
-                $('#mainPanelContainer').css({
-                    'transform': '',
-                    'transform-origin': ''
-                });
-            } else {
-                var scaleN = newScaleN = $('#mainPanel').width() / w;
-                if(scaleVal == 2) {
-                    var hScaleN = ($('#mainPanel').height()) / h;
-                    if(hScaleN < scaleN) scaleN = newScaleN = hScaleN;
-                }
-                var scale = 'scale(' + scaleN + ')';
+        if (clipToView) scaleVal = 0;
+        var vpScaleData = {
+            scale: scaleVal,
+            prevScaleN: prevScaleN,
+            viewportHeight: h,
+            viewportWidth: w,
+            panelWidthOffset: leftPanelOffset + rightPanelOffset,
+            clipToView: clipToView
+        };
+        $axure.messageCenter.postMessage('getScale', vpScaleData);
 
-                $('#mainPanelContainer').css({
-                    'transform': scale,
-                    'transform-origin': ''
-                });
-            }
-        }
         var mainPanelScale = {
             scaleN: newScaleN,
             prevScaleN: prevScaleN
@@ -1512,7 +1502,6 @@ var iphoneXFirstPass = true;
                     removeElasticScrollFromIframe();
 
                     $('html').css('-webkit-tap-highlight-color', 'transparent');
-                    $('#clipFrameScroll').css('overflow', 'auto').css('-webkit-overflow-scrolling', 'touch').css('-ms-overflow-x', 'hidden');
 
                     // Stop iOS from automatically scaling parts of the mobile player
                     // Could stop automatic scaling on Ipads as well that we actually want, but for now, seems fine
@@ -1733,9 +1722,9 @@ var iphoneXFirstPass = true;
 
     function doLeftSplitMove() {
         var currentX = window.event.pageX;
-        var newWidth = Math.min(startSplitWidth + currentX - startSplitX, $(window).width() - $('.rightPanel').width(), $(window).width() - 220);
-        lastLeftPanelWidth = Math.max(220, newWidth);
-        $('.leftPanel').width(lastLeftPanelWidth != 0 ? lastLeftPanelWidth : 220);
+        var newWidth = Math.min(startSplitWidth + currentX - startSplitX, $(window).width() - $('.rightPanel').width(), $(window).width() - lastRightPanelWidthDefault);
+        lastLeftPanelWidth = Math.max(lastLeftPanelWidthDefault, newWidth);
+        $('.leftPanel').width(lastLeftPanelWidth != 0 ? lastLeftPanelWidth : lastLeftPanelWidthDefault);
         $('#lsplitbar').css('left', $('.leftPanel').width() - 4);
         $axure.player.updateClippingBoundsWidth();
         $axure.player.refreshViewPort();
@@ -1743,9 +1732,9 @@ var iphoneXFirstPass = true;
 
     function doRightSplitMove() {
         var currentX = window.event.pageX;
-        var newWidth = Math.min(startSplitWidth - currentX + startSplitX, $(window).width() - $('.leftPanel').width(), $(window).width() - 220);
-        lastRightPanelWidth = Math.max(220, newWidth);
-        $('.rightPanel').width(lastRightPanelWidth != 0 ? lastRightPanelWidth : 220);
+        var newWidth = Math.min(startSplitWidth - currentX + startSplitX, $(window).width() - $('.leftPanel').width(), $(window).width() - lastLeftPanelWidthDefault);
+        lastRightPanelWidth = Math.max(lastRightPanelWidthDefault, newWidth);
+        $('.rightPanel').width(lastRightPanelWidth != 0 ? lastRightPanelWidth : lastRightPanelWidthDefault);
         $('#rsplitbar').css('left', $(window).width() - $('.rightPanel').width());
         $axure.player.updateClippingBoundsWidth();
         $axure.player.refreshViewPort();
@@ -1773,6 +1762,7 @@ var iphoneXFirstPass = true;
     var startMElement;
     var maxMLeft;
     var getMaxMLeft = function () {
+        if ($('.rightPanel.mobileMode').length == 0) return $('.leftPanel.mobileMode').last().position().left + 100;
         return $('.rightPanel.mobileMode').last().position().left + 100;
     }
 
@@ -1885,6 +1875,36 @@ var iphoneXFirstPass = true;
         else if (message == 'tripleClick') {
             if ($axure.player.isMobileMode() || MOBILE_DEVICE) expand();
         } else if (message == 'setContentScale') {
+            if (data.clipToView) {
+                var scaleVal = $('.vpScaleOption').find('.selectedRadioButton').parent().attr('val');
+                if (scaleVal == '2') {
+                    var scaleN = newScaleN = $('#mainPanel').width() / data.viewportWidth;
+                    var hScaleN = ($('#mainPanel').height()) / data.viewportHeight;
+                    if (hScaleN < scaleN) scaleN = newScaleN = hScaleN;
+                    var scale = 'scale(' + scaleN + ')';
+                    $('#mainPanelContainer').css({
+                        'transform': scale,
+                        'transform-origin': ''
+                    });
+                }
+            } else {
+                if (data.scaleN != 1) {
+                    var scale = 'scale(' + data.scaleN + ')';
+                    var width = 100 / data.scaleN + '%';
+                    var height = Number($('#mainPanelContainer').css('height').replace('px', '')) / data.scaleN + 'px';
+                    $('#mainPanelContainer').css({
+                        'transform': scale,
+                        'transform-origin': '0px 0px',
+                        'width': width,
+                        'height': height
+                    });
+                    //$('#clipFrameScroll').css('height' , height + 'px');
+                    //$('#mainFrame').css('height' , height + 'px');
+                    $('#clipFrameScroll').height(height);
+                    $('#mainFrame').height(height);
+                }
+            }
+            
             repositionPinsOnScaleChange(data);
             // Fix for edge not redrawing content after scale change
             if ($axure.browser.isEdge) {
@@ -1893,14 +1913,6 @@ var iphoneXFirstPass = true;
                 $('#outerContainer').height(newHeight).width(newWidth);
                 $('#mainPanel').height(newHeight);
                 $('#clippingBounds').height(newHeight);
-            }
-        } else if (message == 'doWidgetNoteScroll') {
-            if (data.doHorizontalMove && data.doVerticalMove) {
-                $("#clipFrameScroll").animate({ scrollLeft: data.newScrollLeft + "px", scrollTop: data.newScrollTop + "px" }, 300);
-            } else if (data.doHorizontalMove) {
-                $("#clipFrameScroll").animate({ scrollLeft: data.newScrollLeft + "px" }, 300);
-            } else if (data.doVerticalMove) {
-                $("#clipFrameScroll").animate({ scrollTop: data.newScrollTop + "px" }, 300);
             }
         }
     }
@@ -1922,7 +1934,7 @@ var iphoneXFirstPass = true;
         }
     }
 
-    function getPageUrlsById(packageId, foundById, nodes) {
+    var getPageUrlsById = $axure.player.getPageUrlsById = function (packageId, foundById, nodes) {
         if (!nodes) nodes = $axure.document.sitemap.rootNodes;
         for (var i = 0; i < nodes.length; i++) {
             var node = nodes[i];
@@ -2029,26 +2041,6 @@ var iphoneXFirstPass = true;
 
     function expand() {
         if ($axure.player.isMobileMode()) {
-            if (IOS) {
-                // Prevent content from scrolling when trying to move mobile cards
-                $('body').on('touchstart', function (e) {
-                    $('#clipFrameScroll').css('overflow', 'hidden');
-                });
-                $('body').on('touchend', function (e) {
-                    // Borrowed code from resize content
-                    var dimStr = $('.currentAdaptiveView').attr('data-dim');
-                    var dim = dimStr ? dimStr.split('x') : { w: '0', h: '0' };
-                    var h = dim[1] != '0' ? dim[1] : '';
-
-                    var scaleVal = $('.vpScaleOption').find('.selectedRadioButton').parent().attr('val');
-                    $('#clipFrameScroll').css('overflow', '');
-                    if (h || (scaleVal == 1)) {
-                        $('#clipFrameScroll').css('overflow-x', 'hidden');
-                    } else {
-                        $('#clipFrameScroll').css('overflow-x', '');
-                    }
-                });
-            }
             $('#mHideSidebar').show();
             $('#mobileControlFrameContainer').show();
             isShareApp() ? $('#nativeAppControlFrame').show() : $('#mobileBrowserControlFrame').show();
@@ -2097,13 +2089,7 @@ var iphoneXFirstPass = true;
         }
         return querystr;
     }
-
-    var getHashStringVar = $axure.player.getHashStringVar = function(query) {
-        var qstring = self.location.href.split("#");
-        if (qstring.length < 2) return "";
-        return GetParameter(qstring, query);
-    }
-
+    
     function setHashStringVar(currentHash, varName, varVal) {
         var varWithEqual = varName + '=';
         var poundVarWithEqual = varVal === '' ? '' : '#' + varName + '=' + varVal;
@@ -2289,8 +2275,6 @@ var iphoneXFirstPass = true;
                 return false;
             }
 
-            if (settings.id == 'pageNotesHost')
-                $('#overflowMenuContainer').prepend('<div id="showNotesOption" class="showOption" style="order: 3"><div class="overflowOptionCheckbox"></div>Show Notes</div>');
             if (settings.id == 'feedbackHost')
                 $('#overflowMenuContainer').prepend('<div id="showCommentsOption" class="showOption" style="order: 2"><div class="overflowOptionCheckbox"></div>Show Comments</div>');
 
@@ -2362,6 +2346,12 @@ var iphoneXFirstPass = true;
             return ids;
         }
 
+        _player.pluginVisibleChanged = function(hostId, visible) {
+            if ($axure.player.isCloud && plugins[hostId]) {
+                $axure.messageCenter.postMessage('pluginVisibleChanged', { id: hostId, gid: plugins[hostId].gid, visible: visible });
+            }
+        }
+
         var interfaceControlHeaderButton_click = function (id) {
             if (_player.isAnimating) { return; }
             $axure.player.closePopup();
@@ -2374,7 +2364,7 @@ var iphoneXFirstPass = true;
                 clickedPlugin.removeClass('selected');
                 if (id == "sitemapHost") { $('#sitemapControlFrameContainer').removeClass('selected'); }
                 currentVisibleHostId[context] = -1;
-                _player.collapseToBar(context);
+                _player.collapseToBar(context, id);
                 
                 $(document).trigger('pluginShown', [getVisiblePlugins()]);
             } else {
@@ -2383,6 +2373,7 @@ var iphoneXFirstPass = true;
                 if (id == "sitemapHost") { $('#sitemapControlFrameContainer').addClass('selected'); }
 
                 $('#' + currentVisibleHostId[context]).hide();
+                $axure.player.pluginVisibleChanged(currentVisibleHostId[context], false);
                 currentVisibleHostId[context] = id;
                 _player.expandFromBar(id, context);
 
@@ -2398,7 +2389,7 @@ var iphoneXFirstPass = true;
             if (!clickedPlugin.hasClass('selected')) { return; }
             clickedPlugin.removeClass('selected');
             currentVisibleHostId[context] = -1;
-            _player.collapseToBar(context);
+            _player.collapseToBar(context, id);
 
             $(document).trigger('pluginShown', [getVisiblePlugins()]);
         };

@@ -390,7 +390,7 @@
 
     $ax.public.fn.getCornersFromComponent = function (id) {
         var element = document.getElementById(id);
-        var matrix = $ax.public.fn.transformFromElement(element);
+        var matrix = element ? $ax.public.fn.transformFromElement(element) : [1.0, 0.0, 0.0, 1.0, 0.0, 0.0];
         var currentMatrix = { m11: matrix[0], m21: matrix[1], m12: matrix[2], m22: matrix[3], tx: matrix[4], ty: matrix[5] };
         var dimensions = {};
         var axObj = $ax('#' + id);
